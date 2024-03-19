@@ -20,6 +20,15 @@ erc-4337-devnet-deploy-v0.6.0-1 exited with code 0
 
 **You can point you local applications to `http://localhost:8545` for access to all node and bundler RPC methods.**
 
+## Useful commands
+
+Fund any address on the devnet:
+
+```bash
+# ADDRESS and ETH can be set to any value.
+make fund-address ADDRESS=0x... ETH=1
+```
+
 ## Components
 
 The ERC-4337 devnet is composed of several pieces:
