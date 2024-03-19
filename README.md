@@ -12,7 +12,7 @@ The following command will deploy a local devnet with all the required ERC-4337 
 docker-compose up
 ```
 
-Your dev env will be ready once you see the following log:
+Your dev env will be ready once you see the following log. This signals that the relevant contracts have been deployed to the devnet and all infra components are up and running.
 
 ```
 erc-4337-devnet-deploy-v0.6.0-1 exited with code 0
