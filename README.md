@@ -22,6 +22,12 @@ erc-4337-devnet-deploy-v0.6.0-1 exited with code 0
 
 ## Useful commands
 
+Wait for devnet to be ready (useful for CI environments):
+
+```bash
+make wait
+```
+
 Fund any address on the devnet:
 
 ```bash
