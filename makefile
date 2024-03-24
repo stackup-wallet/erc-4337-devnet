@@ -1,3 +1,6 @@
+wait:
+	./wait.sh
+
 fund-address:
 	@if [ -z "$(ADDRESS)" ] || [ -z "$(ETH)" ]; then \
 		echo "Error: ADDRESS and ETH must be set"; \

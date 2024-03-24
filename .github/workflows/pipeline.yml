@@ -19,3 +19,6 @@ jobs:
 
       - name: Deploy ERC-4337 devnet
         run: docker-compose up -d --build
+
+      - name: Wait for ERC-4337 devnet to be ready
+        run: make wait
