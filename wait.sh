@@ -29,6 +29,10 @@ while true; do
             \"params\": [\"$ENTRYPOINT\", \"latest\"]
         }"
         NODE_RESP=$(curl -s -X POST -H "Content-Type: application/json" --data "$NODE_REQ" "$PROXY_URL")
+        if [ $? -ne 0 ]; then
+            echo "Error: Failed to make node request. Retrying in 3 seconds..."
+            break
+        fi
 
 
         CODE_HEX=$(echo "$NODE_RESP" | jq -r '.result')
