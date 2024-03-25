@@ -14,6 +14,10 @@ while true; do
         echo "Error: Failed to make bundler request. Retrying in 3 seconds..."
         sleep 3
         continue
+    elif ! echo $BUNDLER_RESP | jq . > /dev/null 2>&1; then
+        echo "Error: Bundler response is not valid JSON. Retrying in 3 seconds..."
+        sleep 3
+        continue
     fi
 
     READY=false
