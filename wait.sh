@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PROXY_URL="http://localhost:8545"
-BUNDLER_REQUEST='{
+BUNDLER_REQ='{
     "jsonrpc": "2.0",
     "id": 1,
     "method": "eth_supportedEntryPoints",
@@ -9,7 +9,7 @@ BUNDLER_REQUEST='{
 }'
 
 while true; do
-    BUNDLER_RESP=$(curl -s -X POST -H "Content-Type: application/json" --data "$BUNDLER_REQUEST" "$PROXY_URL")
+    BUNDLER_RESP=$(curl -s -X POST -H "Content-Type: application/json" --data "$BUNDLER_REQ" "$PROXY_URL")
     if [ $? -ne 0 ]; then
         echo "Error: Failed to make bundler request. Retrying in 3 seconds..."
         sleep 3
@@ -22,13 +22,13 @@ while true; do
         SUPPORTED_ENTRYPOINTS+=("$line")
     done < <(echo "$BUNDLER_RESP" | jq -r '.result[]')
     for ENTRYPOINT in "${SUPPORTED_ENTRYPOINTS[@]}"; do
-        NODE_REQUEST="{
+        NODE_REQ="{
             \"jsonrpc\": \"2.0\",
             \"id\": 1,
             \"method\": \"eth_getCode\",
             \"params\": [\"$ENTRYPOINT\", \"latest\"]
         }"
-        NODE_RESP=$(curl -s -X POST -H "Content-Type: application/json" --data "$NODE_REQUEST" "$PROXY_URL")
+        NODE_RESP=$(curl -s -X POST -H "Content-Type: application/json" --data "$NODE_REQ" "$PROXY_URL")
 
 
         CODE_HEX=$(echo "$NODE_RESP" | jq -r '.result')
