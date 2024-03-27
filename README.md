@@ -50,7 +50,7 @@ Address: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
 Private Key: 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
 ```
 
-### V0.6 Stackup Verifying Paymaster
+### V0.6 Stackup paymaster contract
 
 This is the [Stackup verifying paymaster](https://github.com/stackup-wallet/contracts) contract for `v0.6`. The signer for this contract is the primary EOA above.
 
@@ -67,3 +67,4 @@ The ERC-4337 devnet is composed of several pieces:
 - `proxy`: [OpenResty](https://openresty.org/en/) server used to proxy JSON-RPC methods to the `node` or `bundler`.
 - `fund-bundler`: A one off command to fund the bundler EOA on startup.
 - `deploy-v0.6`: A one off command to deploy `v0.6` ERC-4337 contracts.
+- `deploy-v0.6-stackup-paymaster`: A one off command to deploy a Stackup verifying paymaster for `v0.6`.
