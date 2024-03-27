@@ -1,14 +1,14 @@
 #!/bin/bash
 
 PROXY_URL="http://localhost:8545"
-BUNDLER_REQ='{
-    "jsonrpc": "2.0",
-    "id": 1,
-    "method": "eth_supportedEntryPoints",
-    "params": []
-}'
-
 while true; do
+    # Check Bundler HTTP server is ready.
+    BUNDLER_REQ='{
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_supportedEntryPoints",
+        "params": []
+    }'
     BUNDLER_RESP=$(curl -s -X POST -H "Content-Type: application/json" --data "$BUNDLER_REQ" "$PROXY_URL")
     if [ $? -ne 0 ]; then
         echo "Error: Failed to make bundler request. Retrying in 3 seconds..."
@@ -19,8 +19,9 @@ while true; do
         sleep 3
         continue
     fi
+    READY=true
 
-    READY=false
+    # Check all supported EntryPoint contracts are deployed.
     SUPPORTED_ENTRYPOINTS=()
     while IFS= read -r line; do
         SUPPORTED_ENTRYPOINTS+=("$line")
@@ -40,16 +41,34 @@ while true; do
 
 
         CODE_HEX=$(echo "$NODE_RESP" | jq -r '.result')
-        if [ $CODE_HEX != "0x" ]; then
-            echo "ERC-4337 Devnet is ready."
-            READY=true
-        else
-            echo "ERC-4337 Devnet is not ready. Checking again soon..."
+        if [ $CODE_HEX == "0x" ]; then
+            echo "ERC-4337 Devnet EntryPoint not yet deployed. Checking again soon..."
             READY=false
         fi
     done
 
+    # Check Stackup Paymaster v0.6 contract is deployed.
+    STACKUP_PM_REQ='{
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_getCode",
+        "params": ["0x42051Fa8F6c012102899c902aA214f1e97bD8aDb", "latest"]
+    }'
+    STACKUP_PM_RESP=$(curl -s -X POST -H "Content-Type: application/json" --data "$STACKUP_PM_REQ" "$PROXY_URL")
+    if [ $? -ne 0 ]; then
+        echo "Error: Failed to make node request. Retrying in 3 seconds..."
+        sleep 3
+        continue
+    fi
+    STACKUP_PM_CODE_HEX=$(echo "$STACKUP_PM_RESP" | jq -r '.result')
+    if [ $STACKUP_PM_CODE_HEX == "0x" ]; then
+        echo "ERC-4337 Devnet Stackup Paymaster not yet deployed. Checking again soon..."
+        READY=false
+    fi
+
+    # Check if devnet is ready.
     if [ "$READY" == "true" ]; then
+        echo "ERC-4337 Devnet is ready."
         exit 0;
     fi
     sleep 3
