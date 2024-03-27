@@ -35,7 +35,7 @@ The ERC-4337 devnet uses the following mnemonic and derived entities. **These sh
 
 ### Mnemonic
 
-This is used to derive all EOAs, particularly the Bundler Paymaster signer.
+This is used to derive all EOAs, particularly the Bundler account and Paymaster signer.
 
 ```
 test test test test test test test test test test test junk
