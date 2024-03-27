@@ -52,7 +52,7 @@ Private Key: 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
 
 ### V0.6 Stackup Verifying Paymaster
 
-This is the [Stackup verifying paymaster](https://github.com/stackup-wallet/contracts) contract for `v0.6`. The signer for this contract is primary EOA above.
+This is the [Stackup verifying paymaster](https://github.com/stackup-wallet/contracts) contract for `v0.6`. The signer for this contract is the primary EOA above.
 
 ```
 Address: 0x42051Fa8F6c012102899c902aA214f1e97bD8aDb
