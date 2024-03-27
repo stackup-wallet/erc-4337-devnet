@@ -12,27 +12,50 @@ The following command will deploy a local devnet with all the required ERC-4337 
 docker-compose up
 ```
 
-Your dev env will be ready once you see the following log. This signals that the relevant contracts have been deployed to the devnet and all infra components are up and running.
+You can run the following command to check if the devnet is ready. This signals that the relevant contracts have been deployed to the devnet and all infra components are up and running.
 
-```
-erc-4337-devnet-deploy-v0.6.0-1 exited with code 0
+```bash
+make wait
 ```
 
 **You can point you local applications to `http://localhost:8545` for access to all node and bundler RPC methods.**
 
 ## Useful commands
 
-Wait for devnet to be ready (useful for CI environments):
-
-```bash
-make wait
-```
-
 Fund any address on the devnet:
 
 ```bash
 # ADDRESS and ETH can be set to any value.
 make fund-address ADDRESS=0x... ETH=1
+```
+
+## Relevant entities
+
+The ERC-4337 devnet uses the following mnemonic and derived entities. **These should be strictly used for development and testing only and never in production.**
+
+### Mnemonic
+
+This is used to derive all EOAs, particularly the Bundler Paymaster signer.
+
+```
+test test test test test test test test test test test junk
+```
+
+### Primary EOA
+
+This is the first EOA account derived from the mnemonic above. It uses the default path `m/44'/60'/0'/0/0`.
+
+```
+Address: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+Private Key: 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+```
+
+### V0.6 Stackup Verifying Paymaster
+
+This is the [Stackup verifying paymaster](https://github.com/stackup-wallet/contracts) contract for `v0.6`. The signer for this contract is primary EOA above.
+
+```
+Address: 0x42051Fa8F6c012102899c902aA214f1e97bD8aDb
 ```
 
 ## Components
