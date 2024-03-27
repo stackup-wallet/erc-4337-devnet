@@ -57,7 +57,8 @@ while true; do
     STACKUP_PM_RESP=$(curl -s -X POST -H "Content-Type: application/json" --data "$STACKUP_PM_REQ" "$PROXY_URL")
     if [ $? -ne 0 ]; then
         echo "Error: Failed to make node request. Retrying in 3 seconds..."
-        break
+        sleep 3
+        continue
     fi
     STACKUP_PM_CODE_HEX=$(echo "$STACKUP_PM_RESP" | jq -r '.result')
     if [ $STACKUP_PM_CODE_HEX == "0x" ]; then
