@@ -68,3 +68,6 @@ The ERC-4337 devnet is composed of several pieces:
 - `fund-bundler`: A one off command to fund the bundler EOA on startup.
 - `deploy-v0.6`: A one off command to deploy `v0.6` ERC-4337 contracts.
 - `deploy-v0.6-stackup-paymaster`: A one off command to deploy a Stackup verifying paymaster for `v0.6`.
+- `stake-v0.6-stackup-paymaster`: A one off command to stake the `v0.6` Stackup verifying paymaster.
+- `deposit-v0.6-stackup-paymaster`: A one off command to deposit funds to the `v0.6` Stackup verifying paymaster.
+- `get-v0.6-stackup-paymaster`: A one off command to get the deposit info for the `v0.6` Stackup verifying paymaster.
