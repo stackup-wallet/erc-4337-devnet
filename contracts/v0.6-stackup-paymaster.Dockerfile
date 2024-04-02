@@ -1,6 +1,6 @@
-FROM node:18
+FROM node:18-bookworm-slim
 
-RUN apt-get update && apt-get install -y git nginx
+RUN apt-get update && apt-get install -y git nginx python3 python3-pip
 
 COPY contracts/nginx.conf /etc/nginx/nginx.conf
 

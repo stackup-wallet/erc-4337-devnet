@@ -18,7 +18,7 @@ You can run the following command to check if the devnet is ready. This signals 
 make wait
 ```
 
-**You can point you local applications to `http://localhost:8545` for access to all node and bundler RPC methods.**
+**You can point you local applications to `http://localhost:8545` for access to all node and bundler RPC methods. For paymaster RPC methods, use `http://localhost:43371`**
 
 ## Useful commands
 
@@ -71,3 +71,4 @@ The ERC-4337 devnet is composed of several pieces:
 - `stake-v0.6-stackup-paymaster`: A one off command to stake the `v0.6` Stackup verifying paymaster.
 - `deposit-v0.6-stackup-paymaster`: A one off command to deposit funds to the `v0.6` Stackup verifying paymaster.
 - `get-v0.6-stackup-paymaster`: A one off command to get the deposit info for the `v0.6` Stackup verifying paymaster.
+- `paymaster`: stackup-paymaster that depends on `node` for the underlying ethereum client and contract from `deploy-v0.6-stackup-paymaster`.

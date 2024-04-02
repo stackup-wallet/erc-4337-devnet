@@ -24,7 +24,6 @@ services:
       ERC4337_BUNDLER_ETH_CLIENT_URL: "http://node:8545"
       ERC4337_BUNDLER_NATIVE_BUNDLER_COLLECTOR_TRACER: "bundlerCollectorTracer"
       ERC4337_BUNDLER_NATIVE_BUNDLER_EXECUTOR_TRACER: "bundlerExecutorTracer"
-      # This key is for testing purposes only. Do not use for anything else.
       ERC4337_BUNDLER_PRIVATE_KEY: "ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80"
     restart: always
     depends_on:
@@ -94,4 +93,18 @@ services:
       hardhat verifyingPaymaster:deposit:get 0x42051Fa8F6c012102899c902aA214f1e97bD8aDb --network localhost
     depends_on:
       deposit-v0.6-stackup-paymaster:
+        condition: service_completed_successfully
+
+  paymaster:
+    image: stackupwallet/stackup-paymaster:v0.0.1
+    ports:
+      - "43371:43371"
+    environment:
+      ERC4337_PAYMASTER_SIGNING_KEY: "ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80"
+      ERC4337_PAYMASTER_ETH_CLIENT_URL: "http://node:8545"
+      ERC4337_PAYMASTER_ENTRYPOINT_TO_PAYMASTERS: |
+        0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789=0x42051Fa8F6c012102899c902aA214f1e97bD8aDb
+    restart: always
+    depends_on:
+      get-v0.6-stackup-paymaster:
         condition: service_completed_successfully
