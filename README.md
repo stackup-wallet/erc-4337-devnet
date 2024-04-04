@@ -21,7 +21,8 @@ make wait
 You can point you local applications to any of these RPC URLs:
 
 - `http://localhost:8545` for access to all node and bundler RPC methods.
-- `http://localhost:4337` for bundler RPC methods only.
+- `http://localhost:8546` for node RPC methods only.
+- `http://localhost:43370` for bundler RPC methods only.
 - `http://localhost:43371` for paymaster RPC methods only.
 
 ## Useful commands

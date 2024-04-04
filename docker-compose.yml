@@ -3,6 +3,8 @@ version: "3.8"
 services:
   node:
     image: stackupwallet/go-ethereum:v1.13.14
+    ports:
+      - "8546:8545"
     command:
       - "--http.vhosts=*"
       - "--http"
@@ -21,7 +23,7 @@ services:
   bundler:
     image: stackupwallet/stackup-bundler:v0.6.45
     ports:
-      - "4337:4337"
+      - "43370:4337"
     environment:
       ERC4337_BUNDLER_ETH_CLIENT_URL: "http://node:8545"
       ERC4337_BUNDLER_NATIVE_BUNDLER_COLLECTOR_TRACER: "bundlerCollectorTracer"
