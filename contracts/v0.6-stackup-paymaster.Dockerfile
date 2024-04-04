@@ -8,7 +8,7 @@ WORKDIR /account-abstraction
 
 RUN git clone --recurse-submodules https://github.com/stackup-wallet/contracts.git .
 
-RUN git fetch && git checkout e5e5229de7c729cc93628da80f75bd355cc42b07
+RUN git fetch && git checkout 8339e2526c2aea85ce1aaa4ed174ba7cbac5c7c8
 
 RUN cp .env.example .env
 

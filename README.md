@@ -18,7 +18,11 @@ You can run the following command to check if the devnet is ready. This signals 
 make wait
 ```
 
-**You can point you local applications to `http://localhost:8545` for access to all node and bundler RPC methods. For paymaster RPC methods, use `http://localhost:43371`**
+You can point you local applications to any of these RPC URLs:
+
+- `http://localhost:8545` for access to all node and bundler RPC methods.
+- `http://localhost:4337` for bundler RPC methods only.
+- `http://localhost:43371` for paymaster RPC methods only.
 
 ## Useful commands
 

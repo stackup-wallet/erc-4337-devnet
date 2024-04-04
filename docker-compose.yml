@@ -19,7 +19,9 @@ services:
       - "--miner.gaslimit=12000000"
 
   bundler:
-    image: stackupwallet/stackup-bundler:v0.6.44
+    image: stackupwallet/stackup-bundler:v0.6.45
+    ports:
+      - "4337:4337"
     environment:
       ERC4337_BUNDLER_ETH_CLIENT_URL: "http://node:8545"
       ERC4337_BUNDLER_NATIVE_BUNDLER_COLLECTOR_TRACER: "bundlerCollectorTracer"
@@ -60,7 +62,7 @@ services:
     build:
       context: .
       dockerfile: ./contracts/v0.6-stackup-paymaster.Dockerfile
-    command: "deploy:VerifyingPaymaster --network localhost"
+    command: "deploy:VerifyingPaymaster --network devnet"
     depends_on:
       deploy-v0.6:
         condition: service_completed_successfully
@@ -70,7 +72,7 @@ services:
       context: .
       dockerfile: ./contracts/v0.6-stackup-paymaster.Dockerfile
     command: |
-      hardhat verifyingPaymaster:stake:add 0x42051Fa8F6c012102899c902aA214f1e97bD8aDb 0.3 --network localhost
+      hardhat verifyingPaymaster:stake:add 0x42051Fa8F6c012102899c902aA214f1e97bD8aDb 0.3 --network devnet
     depends_on:
       deploy-v0.6-stackup-paymaster:
         condition: service_completed_successfully
@@ -80,7 +82,7 @@ services:
       context: .
       dockerfile: ./contracts/v0.6-stackup-paymaster.Dockerfile
     command: |
-      hardhat verifyingPaymaster:deposit:add 0x42051Fa8F6c012102899c902aA214f1e97bD8aDb 1 --network localhost
+      hardhat verifyingPaymaster:deposit:add 0x42051Fa8F6c012102899c902aA214f1e97bD8aDb 1 --network devnet
     depends_on:
       stake-v0.6-stackup-paymaster:
         condition: service_completed_successfully
@@ -90,7 +92,7 @@ services:
       context: .
       dockerfile: ./contracts/v0.6-stackup-paymaster.Dockerfile
     command: |
-      hardhat verifyingPaymaster:deposit:get 0x42051Fa8F6c012102899c902aA214f1e97bD8aDb --network localhost
+      hardhat verifyingPaymaster:deposit:get 0x42051Fa8F6c012102899c902aA214f1e97bD8aDb --network devnet
     depends_on:
       deposit-v0.6-stackup-paymaster:
         condition: service_completed_successfully
