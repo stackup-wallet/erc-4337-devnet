@@ -89,6 +89,15 @@ services:
       stake-v0.6-stackup-paymaster:
         condition: service_completed_successfully
 
+  deploy-v0.7:
+    build:
+      context: .
+      dockerfile: ./contracts/v0.7.Dockerfile
+    command: "deploy --network localhost"
+    depends_on:
+      deposit-v0.6-stackup-paymaster:
+        condition: service_completed_successfully
+
   get-v0.6-stackup-paymaster:
     build:
       context: .

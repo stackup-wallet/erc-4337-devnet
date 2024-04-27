@@ -76,4 +76,5 @@ The ERC-4337 devnet is composed of several pieces:
 - `stake-v0.6-stackup-paymaster`: A one off command to stake the `v0.6` Stackup verifying paymaster.
 - `deposit-v0.6-stackup-paymaster`: A one off command to deposit funds to the `v0.6` Stackup verifying paymaster.
 - `get-v0.6-stackup-paymaster`: A one off command to get the deposit info for the `v0.6` Stackup verifying paymaster.
+- `deploy-v0.7`: A one off command to deploy `v0.7` ERC-4337 contracts.
 - `paymaster`: stackup-paymaster that depends on `node` for the underlying ethereum client and contract from `deploy-v0.6-stackup-paymaster`.
